@@ -1,8 +1,8 @@
-resource "aws_api_gateway_rest_api" "example" {
+resource "aws_api_gateway_rest_api" "flask-apigw" {
   body = jsonencode({
     openapi = "3.0.1"
     info = {
-      title   = "example"
+      title   = "flask-apigw"
       version = "1.0"
     }
     paths = {
@@ -12,25 +12,25 @@ resource "aws_api_gateway_rest_api" "example" {
             payloadFormatVersion = "1.0"
             httpMethod           = "POST"
             type                 = "AWS_PROXY"
-            uri                  = "${aws_lambda_function.example.invoke_arn}"
+            uri                  = "${aws_lambda_function.flask-lambda-function.invoke_arn}"
           }
         }
       }
     }
   })
 
-  name = "example"
+  name = "flask-apigw"
 
   endpoint_configuration {
     types = ["REGIONAL"]
   }
 }
 
-resource "aws_api_gateway_deployment" "example" {
-  rest_api_id = aws_api_gateway_rest_api.example.id
+resource "aws_api_gateway_deployment" "flask-apigw-deploy" {
+  rest_api_id = aws_api_gateway_rest_api.flask-apigw.id
 
   triggers = {
-    redeployment = sha1(jsonencode(aws_api_gateway_rest_api.example.body))
+    redeployment = sha1(jsonencode(aws_api_gateway_rest_api.flask-apigw.body))
   }
 
   lifecycle {
@@ -38,8 +38,8 @@ resource "aws_api_gateway_deployment" "example" {
   }
 }
 
-resource "aws_api_gateway_stage" "example" {
-  deployment_id = aws_api_gateway_deployment.example.id
-  rest_api_id   = aws_api_gateway_rest_api.example.id
-  stage_name    = "example"
+resource "aws_api_gateway_stage" "flask-apigw-stage" {
+  deployment_id = aws_api_gateway_deployment.flask-apigw-deploy.id
+  rest_api_id   = aws_api_gateway_rest_api.flask-apigw.id
+  stage_name    = "flask-apigw-stage"
 }
