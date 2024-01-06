@@ -58,77 +58,77 @@ resource "aws_api_gateway_rest_api" "flask-apigw" {
           },
         }
       },
-      #   "/put" : {
-      #     "put" : {
-      #       "operationId" : "Lambda Put",
-      #       "requestBody" : {
-      #         "content" : {
-      #           "application/json" : {
-      #             "schema" : {
-      #               "type" : "Object"
-      #             }
-      #           }
-      #         },
-      #         "required" : true
-      #       },
-      #       "responses" : {
-      #         "200" : {
-      #           "description" : "200 response",
-      #           "headers" : {
-      #             "Access-Control-Allow-Origin" : {
-      #               "schema" : {
-      #                 "type" : "string"
-      #               }
-      #             }
-      #           },
-      #           "content" : {
-      #             "application/json" : {
-      #               "schema" : {
-      #                 "type" : "Object"
-      #               }
-      #             }
-      #           }
-      #         }
-      #       },
-      #       "required" : true,
-      #       "x-amazon-apigateway-integration" : {
-      #         "payloadFormatVersion" : "1.0",
-      #         "httpMethod" : "PUT",
-      #         "type" : "AWS_PROXY",
-      #         "uri" : "${aws_lambda_function.flask-lambda-function.invoke_arn}",
-      #       },
-      #     }
-      #   },
-      #   "/delete" : {
-      #     "delete" : {
-      #       "operationId" : "Delete",
-      #       "responses" : {
-      #         "200" : {
-      #           "description" : "200 response",
-      #           "headers" : {
-      #             "Access-Control-Allow-Origin" : {
-      #               "schema" : {
-      #                 "type" : "string"
-      #               }
-      #             }
-      #           },
-      #           "content" : {
-      #             "application/json" : {
-      #               "schema" : {
-      #                 "type" : "Object"
-      #               }
-      #             }
-      #           }
-      #         }
-      #       },
-      #       "x-amazon-apigateway-integration" : {
-      #         "payloadFormatVersion" : "1.0",
-      #         "httpMethod" : "DELETE",
-      #         "type" : "AWS_PROXY",
-      #         "uri" : "${aws_lambda_function.flask-lambda-function.invoke_arn}",
-      #       },
-      #     }
-      #   },
+      "/put" : {
+        "put" : {
+          "operationId" : "Lambda Put",
+          "requestBody" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "Object"
+                }
+              }
+            },
+            "required" : true
+          },
+          "responses" : {
+            "200" : {
+              "description" : "200 response",
+              "headers" : {
+                "Access-Control-Allow-Origin" : {
+                  "schema" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "type" : "Object"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true,
+          "x-amazon-apigateway-integration" : {
+            "payloadFormatVersion" : "1.0",
+            "httpMethod" : "PUT",
+            "type" : "AWS_PROXY",
+            "uri" : "${aws_lambda_function.flask-lambda-function.invoke_arn}",
+          },
+        }
+      },
+      "/delete" : {
+        "delete" : {
+          "operationId" : "Delete",
+          "responses" : {
+            "200" : {
+              "description" : "200 response",
+              "headers" : {
+                "Access-Control-Allow-Origin" : {
+                  "schema" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "type" : "Object"
+                  }
+                }
+              }
+            }
+          },
+          "x-amazon-apigateway-integration" : {
+            "payloadFormatVersion" : "1.0",
+            "httpMethod" : "DELETE",
+            "type" : "AWS_PROXY",
+            "uri" : "${aws_lambda_function.flask-lambda-function.invoke_arn}",
+          },
+        }
+      },
     }
   })
 
