@@ -6,13 +6,23 @@ resource "aws_api_gateway_rest_api" "example" {
       version = "1.0"
     }
     paths = {
+      "/" = {
+        get = {
+          x-amazon-apigateway-integration = {
+            payloadFormatVersion = "1.0"
+            httpMethod           = "ANY"
+            type                 = "AWS_PROXY"
+            uri                  = "${aws_lambda_function.example.invoke_arn}"
+          }
+        }
+      }
       "/path1" = {
         get = {
           x-amazon-apigateway-integration = {
-            httpMethod           = "GET"
             payloadFormatVersion = "1.0"
-            type                 = "HTTP_PROXY"
-            uri                  = "https://ip-ranges.amazonaws.com/ip-ranges.json"
+            httpMethod           = "POST"
+            type                 = "AWS_PROXY"
+            uri                  = "${aws_lambda_function.example.invoke_arn}"
           }
         }
       }
