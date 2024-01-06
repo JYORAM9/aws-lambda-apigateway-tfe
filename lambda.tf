@@ -1,11 +1,10 @@
 resource "aws_lambda_function" "flask-lambda-function" {
   function_name = "flask-lambda-function"
-    s3_bucket     = "terraform-serverless-example-jyo"
-    s3_key        = "v1.0.0/first-web-flask.zip"
-  handler  = "app.handler"
-  runtime  = "python3.9"
-  timeout  = 10
-#   filename = "./first-web-flask.zip"
+  s3_bucket     = "terraform-serverless-example-jyo"
+  s3_key        = "v1.0.0/first-web-flask.zip"
+  handler       = "app.handler"
+  runtime       = "python3.9"
+  #   filename = "./first-web-flask.zip"
 
   role = aws_iam_role.lambda_exec.arn
 }

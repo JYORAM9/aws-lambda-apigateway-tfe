@@ -1,24 +1,25 @@
 resource "aws_api_gateway_rest_api" "flask-apigw" {
   body = jsonencode({
-    openapi = "3.0.1"
-    info = {
-      title   = "flask-apigw"
-      version = "1.0"
-    }
-    paths = {
-      "/" = {
+    "openapi" : "3.0.1",
+    "info" : {
+      "title" : "flask API",
+      "description" : "A Flask API.",
+      "version" : "1.0"
+    },
+    "paths" : {
+      "/" : {
         "get" : {
-        "operationId": "get_handler",
+          "operationId" : "get_handler",
           "x-amazon-apigateway-integration" : {
-            "payloadFormatVersion" : "1.0"
-            "httpMethod" : "GET"
-            "type" : "AWS_PROXY"
-            "uri" : "${aws_lambda_function.flask-lambda-function.invoke_arn}"
+            "payloadFormatVersion" : "1.0",
+            "httpMethod" : "GET",
+            "type" : "AWS_PROXY",
+            "uri" : "${aws_lambda_function.flask-lambda-function.invoke_arn}",
           },
         }
       },
-      "/post" = {
-        post = {
+      "/post" : {
+        "post" : {
           "operationId" : "Lambda Post Greet",
           "requestBody" : {
             "content" : {
@@ -49,16 +50,16 @@ resource "aws_api_gateway_rest_api" "flask-apigw" {
               }
             }
           },
-          x-amazon-apigateway-integration = {
-            payloadFormatVersion = "1.0"
-            httpMethod           = "POST"
-            type                 = "AWS_PROXY"
-            uri                  = "${aws_lambda_function.flask-lambda-function.invoke_arn}"
-          }
+          "x-amazon-apigateway-integration" : {
+            "payloadFormatVersion" : "1.0",
+            "httpMethod" : "POST",
+            "type" : "AWS_PROXY",
+            "uri" : "${aws_lambda_function.flask-lambda-function.invoke_arn}",
+          },
         }
       },
-      "/put" = {
-        put = {
+      "/put" : {
+        "put" : {
           "operationId" : "Lambda Put",
           "requestBody" : {
             "content" : {
@@ -90,16 +91,16 @@ resource "aws_api_gateway_rest_api" "flask-apigw" {
             }
           },
           "required" : true,
-          x-amazon-apigateway-integration = {
-            payloadFormatVersion = "1.0"
-            httpMethod           = "PUT"
-            type                 = "AWS_PROXY"
-            uri                  = "${aws_lambda_function.flask-lambda-function.invoke_arn}"
-          }
+          "x-amazon-apigateway-integration" : {
+            "payloadFormatVersion" : "1.0",
+            "httpMethod" : "PUT",
+            "type" : "AWS_PROXY",
+            "uri" : "${aws_lambda_function.flask-lambda-function.invoke_arn}",
+          },
         }
       },
-      "/delete" = {
-        delete = {
+      "/delete" : {
+        "delete" : {
           "operationId" : "Delete",
           "requestBody" : {
             "content" : {
@@ -130,15 +131,15 @@ resource "aws_api_gateway_rest_api" "flask-apigw" {
               }
             }
           },
-          x-amazon-apigateway-integration = {
-            payloadFormatVersion = "1.0"
-            httpMethod           = "DELETE"
-            type                 = "AWS_PROXY"
-            uri                  = "${aws_lambda_function.flask-lambda-function.invoke_arn}"
-          }
+          "x-amazon-apigateway-integration" : {
+            "payloadFormatVersion" : "1.0",
+            "httpMethod" : "GET",
+            "type" : "AWS_PROXY",
+            "uri" : "${aws_lambda_function.flask-lambda-function.invoke_arn}",
+          },
         }
       },
-      components = {
+      "components" : {
         "schemas" : {
           "Empty" : {
             "type" : "object"
