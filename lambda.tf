@@ -6,10 +6,14 @@ resource "aws_lambda_function" "flask-lambda-function" {
   runtime       = "python3.9"
   #   filename = "./first-web-flask.zip"
 
-  role = aws_iam_role.lambda_exec.arn
+  role = aws_iam_role.lambda_execution_role.arn
+  vpc_config {
+    subnet_ids         = [aws_subnet.example_subnet.id]
+    security_group_ids = [aws_security_group.lambda_sg.id]
+  }
 }
 
-resource "aws_iam_role" "lambda_exec" {
+resource "aws_iam_role" "lambda_execution_role" {
   name = "serverless_flask_lambda"
 
   assume_role_policy = <<EOF
@@ -27,4 +31,12 @@ resource "aws_iam_role" "lambda_exec" {
   ]
 }
 EOF
+}
+
+# Attach an IAM policy to the role
+resource "aws_iam_policy_attachment" "lambda_policy_attachment" {
+  name       = "lambda_policy_attachment"
+  policy_arn = "arn:aws:iam::aws:policy/AWSLambdaExecute"
+
+  roles = [aws_iam_role.lambda_execution_role.name]
 }
