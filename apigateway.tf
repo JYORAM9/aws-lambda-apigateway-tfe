@@ -16,16 +16,6 @@ resource "aws_api_gateway_rest_api" "example" {
           }
         }
       }
-      "/path1" = {
-        get = {
-          x-amazon-apigateway-integration = {
-            payloadFormatVersion = "1.0"
-            httpMethod           = "POST"
-            type                 = "AWS_PROXY"
-            uri                  = "${aws_lambda_function.example.invoke_arn}"
-          }
-        }
-      }
     }
   })
 
