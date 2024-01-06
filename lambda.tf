@@ -11,7 +11,7 @@ resource "aws_lambda_function" "flask-lambda-function" {
 }
 
 resource "aws_iam_role" "lambda_exec" {
-  name = "serverless_example_lambda"
+  name = "serverless_flask_lambda"
 
   assume_role_policy = <<EOF
 {
