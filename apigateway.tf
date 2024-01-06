@@ -12,7 +12,7 @@ resource "aws_api_gateway_rest_api" "example" {
             payloadFormatVersion = "1.0"
             httpMethod           = "POST"
             type                 = "AWS_PROXY"
-            uri                  = "${aws_lambda_function.example.invoke_arn}"
+            uri                  = "${aws_lambda_function.flask-lambda-function.invoke_arn}"
           }
         }
       }
