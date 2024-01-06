@@ -7,13 +7,13 @@ resource "aws_lambda_function" "example" {
 
   # The bucket name as created earlier with "aws s3api create-bucket"
   s3_bucket = "terraform-serverless-example-jyo"
-  s3_key    = "v1.0.0/example.zip"
+  s3_key    = "v1.0.0/first-web-flask.zip"
 
   # "main" is the filename within the zip file (main.js) and "handler"
   # is the name of the property under which the handler function was
   # exported in that file.
   handler = "main.handler"
-  runtime = "nodejs18.x"
+  runtime = "python3.11"
 
   role = aws_iam_role.lambda_exec.arn
 }
