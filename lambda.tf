@@ -5,7 +5,7 @@ resource "aws_lambda_function" "flask-lambda-function" {
   handler       = "app.handler"
   runtime       = "python3.9"
   timeout       = 10
-  filename      = "../first-web-flask.zip"
+  filename      = "./first-web-flask.zip"
 
   role = aws_iam_role.lambda_exec.arn
 }
