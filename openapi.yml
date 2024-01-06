@@ -1,0 +1,37 @@
+# openapi: 3.0.0
+# info:
+#   title: Flask Web App
+#   version: 1.0.0
+# paths:
+#   /:
+#     get:
+#       operationId: get_handler
+#   /greet:
+#     post:
+#       operationId: post_handler
+#       requestBody:
+#         description: Post Request
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#       responses:
+#         '200':
+#           description: Successful response
+#   /put:
+#     put:
+#       operationId: put_handler
+#       requestBody:
+#         description: Put Request
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#       responses:
+#         '200':
+#           description: Successful response
+#   /delete:
+#     delete:
+#       operationId: delete_handler
